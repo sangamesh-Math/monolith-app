@@ -31,3 +31,19 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# IDEs
+*.iml
+.idea/
+*.ipr
+*.iws
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Others
+/out/
