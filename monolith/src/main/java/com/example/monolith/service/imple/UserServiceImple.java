@@ -1,5 +1,6 @@
 package com.example.monolith.service.imple;
 
+import com.example.monolith.exception.ResourceNotFoundException;
 import com.example.monolith.model.User;
 import com.example.monolith.repository.UserRepository;
 import com.example.monolith.service.ServiceInterfaces.UserServiceIntf;
@@ -23,17 +24,12 @@ public class UserServiceImple implements UserServiceIntf {
     }
 
     public User getUser(Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id " + id));
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id + "The above is a defined custom exception "));
     }
 
-    public String deleteUser(Long id) {
-        if(userRepository.findById(id).isPresent()) {
-            userRepository.deleteById(id);
-            return "User deleted successfully";
-        }
-        else
-            return "Invalid User Id";
+    public void deleteUser(Long id) {
+       User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid id: " + id));
+       userRepository.delete(user);
     }
 
     public User updateUser(Long id, User user) {

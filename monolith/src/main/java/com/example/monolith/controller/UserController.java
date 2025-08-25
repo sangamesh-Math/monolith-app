@@ -1,6 +1,7 @@
 package com.example.monolith.controller;
 
 import com.example.monolith.service.ServiceInterfaces.UserServiceIntf;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.monolith.model.User;
 
@@ -26,8 +27,9 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    String deleteUserById(@PathVariable Long id) {
-        return userService.deleteUser(id);
+    ResponseEntity<Void> deleteUserById(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping()
