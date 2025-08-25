@@ -4,9 +4,9 @@ import com.example.monolith.dto.UserCreateDto;
 import com.example.monolith.dto.UserResponseDto;
 import com.example.monolith.dto.UserUpdateDto;
 import com.example.monolith.service.ServiceInterfaces.UserServiceIntf;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.monolith.model.User;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping
-    UserResponseDto createUser(@RequestBody UserCreateDto user) {
+    UserResponseDto createUser(@RequestBody @Valid UserCreateDto user) {
         return userService.createUser(user);
     }
 
@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    UserResponseDto updateUserById(@PathVariable Long id, @RequestBody UserUpdateDto user) {
+    UserResponseDto updateUserById(@PathVariable Long id, @Valid @RequestBody UserUpdateDto user) {
         return userService.updateUser(id, user);
     }
 }
