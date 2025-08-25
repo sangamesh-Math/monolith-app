@@ -1,5 +1,8 @@
 package com.example.monolith.controller;
 
+import com.example.monolith.dto.UserCreateDto;
+import com.example.monolith.dto.UserResponseDto;
+import com.example.monolith.dto.UserUpdateDto;
 import com.example.monolith.service.ServiceInterfaces.UserServiceIntf;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +20,12 @@ public class UserController {
     }
 
     @PostMapping
-    User createUser(@RequestBody User user) {
+    UserResponseDto createUser(@RequestBody UserCreateDto user) {
         return userService.createUser(user);
     }
 
     @GetMapping("/{id}")
-    User getUserById(@PathVariable Long id) {
+    UserResponseDto getUserById(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
@@ -33,12 +36,12 @@ public class UserController {
     }
 
     @GetMapping()
-    List<User> getAllUsers() {
+    List<UserResponseDto> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @PutMapping("/{id}")
-    User updateUserById(@PathVariable Long id, @RequestBody User user) {
+    UserResponseDto updateUserById(@PathVariable Long id, @RequestBody UserUpdateDto user) {
         return userService.updateUser(id, user);
     }
 }

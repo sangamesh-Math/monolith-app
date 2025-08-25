@@ -1,13 +1,15 @@
 package com.example.monolith.service.ServiceInterfaces;
 
-import com.example.monolith.model.User;
+import com.example.monolith.dto.UserCreateDto;
+import com.example.monolith.dto.UserResponseDto;
+import com.example.monolith.dto.UserUpdateDto;
 
 import java.util.List;
 
 public interface UserServiceIntf {
-    User createUser(User user);
-    User getUser(Long id);
+    UserResponseDto createUser(UserCreateDto dto);
+    UserResponseDto getUser(Long id);
     void deleteUser(Long id);
-    User updateUser(Long id, User user);
-    List<User> getAllUsers();
+    UserResponseDto updateUser(Long id, UserUpdateDto user);
+    List<UserResponseDto> getAllUsers();
 }
