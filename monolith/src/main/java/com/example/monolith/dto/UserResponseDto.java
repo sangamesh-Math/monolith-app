@@ -5,8 +5,8 @@ public class UserResponseDto {
     private String name;
     private String email;
 
-    UserResponseDto() {}
-    UserResponseDto(Long id, String name, String email) {
+    public UserResponseDto() {}
+    public UserResponseDto(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;

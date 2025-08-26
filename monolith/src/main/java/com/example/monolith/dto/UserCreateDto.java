@@ -10,6 +10,11 @@ public class UserCreateDto {
     @Email(message = "Email should be valid")
    private String email;
 
+    public UserCreateDto(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
     public String getName() {
         return name;
     }
