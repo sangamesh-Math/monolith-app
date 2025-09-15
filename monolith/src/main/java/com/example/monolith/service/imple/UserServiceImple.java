@@ -8,6 +8,9 @@ import com.example.monolith.exception.ResourceNotFoundException;
 import com.example.monolith.model.User;
 import com.example.monolith.repository.UserRepository;
 import com.example.monolith.service.ServiceInterfaces.UserServiceIntf;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,7 +43,6 @@ public class UserServiceImple implements UserServiceIntf {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
         UserMapperDto.updateEntity(existing, dto);
         return UserMapperDto.toResponseDto(userRepository.save(existing));
-
     }
 
     public List<UserResponseDto> getAllUsers() {
